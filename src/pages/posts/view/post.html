@@ -1,0 +1,176 @@
+<ion-header>
+    <ion-row class="mt-header">
+        <ion-col col-2 text-left>
+            <button ion-button class="page-back-button button-transparent" (click)="goBackPage()">
+                <ion-icon class="back-icon" name="ios-arrow-back"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-8 text-center>
+            <div class="genericTitle inHeader">
+                view post
+            </div>
+        </ion-col>
+        <ion-col col-2></ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+
+    <div *ngIf="!dataLoading" style="padding-top: 0; height: 100%;">
+
+        <ion-grid class="posts-grid">
+
+            <ion-row class="post-row">
+                <ion-col col-3 class="user-profile">
+                    <img [src]="getUserProfileImage(post.post.profile)" class="profile-image"
+                         (click)="onProfileView(post.post.profile)" tappable>
+                    <div class="profile-name">
+                        <span *ngIf="post.post.profile.id == profile.id">You</span>
+                        <span *ngIf="post.post.profile.id != profile.id">{{post.post.profile.first_name}} {{post.post.profile.last_name}}</span>
+                    </div>
+                    <div class="profile-karma">karma {{post.post.profile.total_karma_points}}</div>
+
+                    <profile-leaves [userProfile]="post.post.profile"></profile-leaves>
+
+                </ion-col>
+                <ion-col col-9 class="post-container">
+                    <div class="post-header">
+                        <span>
+                            {{post.post.profile.first_name}}'s
+                            <span *ngIf="post.post.hasOwnProperty('post_image_url') && post.post.post_image_url">image</span>
+                            <span *ngIf="!post.post.post_image_url">leaf</span>
+                        </span>
+                        <span class="time-posted">{{displayTimeDifference(post.post.created_at)}}</span>
+                    </div>
+                    <div class="post-menu" (click)="presentPopover($event)" *ngIf="post.post.profile.id != profile.id" tappable>
+                        <ion-icon name="ios-more"></ion-icon>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-body" [ngClass]="(!post.post.youtube_video_key && !post.post.post_image_url) ? 'with-min-height-reply' : ''">
+                            <span *ngFor="let element of splitByHashtags(post.post.body)">
+                                <strong *ngIf="isHashtag(element)"
+                                        (click)="onFilterPosts(getWordFromHashtag(element))" tappable>{{element}}</strong>
+                                <span *ngIf="!isHashtag(element)">{{element}}</span>
+                            </span>
+                        </div>
+
+                        <div [ngClass]="{'post-meta-wrapper': post.post.post_image_url || post.post.youtube_video_key}">
+                          <div class="post-image" (click)="onPhotoView(post.post.post_image_url)" *ngIf="post.post.post_image_url" tapable>
+                              <img [src]="post.post.post_image_url">
+                          </div>
+                          <div text-center *ngIf="post.youtube_video_key"
+                               (click)="onOpenVideo(post.youtube_video_key)" tappable>
+                              <img src="assets/icon/YouTube-play.png" height="70px">
+                              <!--<div>{{post.post.youtube_video_key}}</div>-->
+                          </div>
+                        </div>
+                    </div>
+                    <ion-row class="post-footer" style="padding: 5px">
+
+                        <award-karma style="width: 30%" [post]="post" [userProfile]="profile" [karmaBarPosition]="karmaBarPosition"></award-karma>
+
+                        <span style="width: 30%" [ngClass]="post.hasOwnProperty('awarded_impact_id') ? 'text-blue' : 'text-gray'">
+                            <span tappable (click)="(profile.id == post.post.profile.id) ? '' : (!post.hasOwnProperty('awarded_impact_id') || null == post.awarded_impact_id) ? onAddImpactPoint(post) : onRemoveImpactPoint(post)">
+                                <ion-icon name="ios-star"></ion-icon> impact
+                            </span>
+                        </span>
+                        <span style="width: 40%" text-center class="text-blue" (click)="onPostComment(post.post)" tappable>
+                            <ion-icon name="ios-chatbubbles-outline" *ngIf="post.post.post_replies.length == 0"></ion-icon>
+                            <ion-icon name="ios-chatbubbles" *ngIf="post.post.post_replies.length > 0"></ion-icon>
+                            <span *ngIf="post.post.post_replies.length > 0">{{post.post.post_replies.length}}</span>
+                            comment
+                        </span>
+                    </ion-row>
+                </ion-col>
+
+                <div *ngFor="let replyPost of post.post.post_replies; let i = index" style="width: 100%">
+                    <ion-row *ngIf="post.post.post_replies.length > 0" style="border-top: 1px solid #D8DBDB;">
+
+                        <ion-col col-3 class="user-profile user-profile-reply">
+                            <img [src]="getUserProfileImage(replyPost.post.profile)" class="profile-image"
+                                 (click)="onProfileView(replyPost.post.profile)" tappable>
+                            <div class="profile-name">
+                                <span *ngIf="replyPost.post.profile.id == profile.id" >You</span>
+                                <span *ngIf="replyPost.post.profile.id != profile.id">
+                                    {{replyPost.post.profile.first_name}} {{replyPost.post.profile.last_name}}
+                                </span>
+                            </div>
+                            <div class="profile-karma">karma
+                                {{replyPost.post.profile.total_karma_points}}
+                            </div>
+
+                            <profile-leaves [userProfile]="replyPost.post.profile"></profile-leaves>
+
+                        </ion-col>
+                        <ion-col col-9 class="post-container">
+                            <div class="post-header">
+                                <span>responded</span>
+                                <span class="time-posted">{{displayTimeDifference(replyPost.post.created_at)}}</span>
+                            </div>
+
+                            <div class="post-menu" (click)="presentPopover($event, replyPost.post)" *ngIf="replyPost.post.profile.id != profile.id" tappable>
+                                <ion-icon name="ios-more"></ion-icon>
+                            </div>
+                            <div class="post-content">
+                                <div class="post-body-full" [ngClass]="(!replyPost.post.youtube_video_key && !replyPost.post.post_image_url) ? 'with-min-height-reply' : ''">
+                                    <span *ngFor="let element of splitByHashtags(replyPost.post.body)">
+                                        <strong *ngIf="isHashtag(element)"
+                                                (click)="onFilterPosts(getWordFromHashtag(element))" tappable>{{element}}</strong>
+                                        <span *ngIf="!isHashtag(element)">{{element}}</span>
+                                    </span>
+                                </div>
+
+                              <div [ngClass]="{'post-meta-wrapper': replyPost.post.post_image_url || replyPost.post.youtube_video_key}">
+                                <div class="post-image" (click)="onPhotoView(replyPost.post.post_image_url)" *ngIf="replyPost.post.post_image_url" tapable>
+                                  <img [src]="replyPost.post.post_image_url">
+                                </div>
+                                <div text-center *ngIf="replyPost.post.youtube_video_key"
+                                     (click)="onOpenVideo(replyPost.post.youtube_video_key)" tappable>
+                                    <img src="assets/icon/YouTube-play.png" height="70px">
+                                    <!--<div>{{replyPost.post.youtube_video_key}}</div>-->
+                                </div>
+                              </div>
+                            </div>
+                            <ion-row class="post-footer">
+                                <ion-col col-4
+                                         [ngClass]="replyPost.post.hasOwnProperty('awarded_karma') ? 'text-gray' : 'text-blue'">
+                                    <award-karma style="width: 30%" [post]="replyPost" [userProfile]="profile" [karmaBarPosition]="'top'"></award-karma>
+                                </ion-col>
+                                <ion-col col-4 [ngClass]="replyPost.hasOwnProperty('awarded_impact_id') ? 'text-blue' : 'text-gray'">
+                                    <span>
+                                        <span tappable (click)="(profile.id == replyPost.post.profile.id) ? '' : (!replyPost.hasOwnProperty('awarded_impact_id') || null == replyPost.awarded_impact_id) ? onAddImpactPoint(replyPost) : onRemoveImpactPoint(replyPost)">
+                                            <ion-icon name="ios-star"></ion-icon> impact
+                                        </span>
+                                    </span>
+                                </ion-col>
+
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <ion-row class="post-row-reply" *ngIf="post.post.post_replies.length > 0">
+                    <ion-col col-3 class="user-profile">
+                        <img [src]="getUserProfileImage(profile)" class="profile-image">
+                    </ion-col>
+                    <ion-col col-9 (click)="onPostComment(post.post)" tappable style="margin: 0; padding: 0">
+                        <ion-row>
+                            <ion-col col-10>
+                                <div class="reply-field">
+                                    <span class="reply-text">write a reply... </span>
+                                    <span class="reply-camera">
+                            <!--<ion-icon name="ios-camera" style=""></ion-icon>-->
+                        </span>
+                                </div>
+                            </ion-col>
+                            <ion-col col-2 text-center class="reply-send">
+                                <ion-icon name="md-send"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-row>
+        </ion-grid>
+
+    </div>
+
+</ion-content>

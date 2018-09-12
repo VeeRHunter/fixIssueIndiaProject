@@ -1,0 +1,17 @@
+<div class="profile-leafs">
+    <ion-icon name="ios-leaf"
+              [ngClass]="isApprovedPractitioner(userProfile) ? 'leaf-practitioner' : 'leaf-health-user'"
+              *ngIf="userProfile.total_karma_points >= 1"></ion-icon>
+    <ion-icon name="ios-leaf"
+              [ngClass]="isApprovedPractitioner(userProfile) ? 'leaf-practitioner' : 'leaf-health-user'"
+              *ngIf="userProfile.total_karma_points >= 25 && userProfile.total_karma_points < 99"></ion-icon>
+    <ion-icon name="ios-leaf"
+              [ngClass]="isApprovedPractitioner(userProfile) ? 'leaf-practitioner' : 'leaf-health-user'"
+              *ngIf="userProfile.total_karma_points >= 100 && userProfile.total_karma_points < 249"></ion-icon>
+    <ion-icon name="ios-leaf"
+              [ngClass]="isApprovedPractitioner(userProfile) ? 'leaf-practitioner' : 'leaf-health-user'"
+              *ngIf="userProfile.total_karma_points >= 250 && userProfile.total_karma_points < 499"></ion-icon>
+    <ion-icon name="ios-leaf"
+              [ngClass]="isApprovedPractitioner(userProfile) ? 'leaf-practitioner' : 'leaf-health-user'"
+              *ngIf="userProfile.total_karma_points >= 500"></ion-icon>
+</div>

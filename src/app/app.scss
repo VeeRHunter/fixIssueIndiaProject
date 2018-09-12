@@ -1,0 +1,641 @@
+// http://ionicframework.com/docs/v2/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+@font-face {
+  font-family: 'CoText';
+  src: url('#{$font-path}/CoText-Regular.eot');
+  src: url('#{$font-path}/CoText-Regular.eot?#iefix') format('embedded-opentype'),
+  url('#{$font-path}/CoText-Regular.woff2') format('woff2'),
+  url('#{$font-path}/CoText-Regular.woff') format('woff'),
+  url('#{$font-path}/CoText-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CoTextLt';
+  src: url('#{$font-path}//CoTextLt-Regular.eot');
+  src: url('#{$font-path}//CoTextLt-Regular.eot?#iefix') format('embedded-opentype'),
+  url('#{$font-path}//CoTextLt-Regular.woff2') format('woff2'),
+  url('#{$font-path}//CoTextLt-Regular.woff') format('woff'),
+  url('#{$font-path}//CoTextLt-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CoTextBd';
+  src: url('#{$font-path}/CoTextBd-Regular.eot');
+  src: url('#{$font-path}/CoTextBd-Regular.eot?#iefix') format('embedded-opentype'),
+  url('#{$font-path}/CoTextBd-Regular.woff2') format('woff2'),
+  url('#{$font-path}/CoTextBd-Regular.woff') format('woff'),
+  url('#{$font-path}/CoTextBd-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "CoTextLt", sans-serif;
+}
+
+ion-header {
+  //top: 10px;
+  padding: 10px 0;
+}
+
+.header {
+  padding-bottom: 10px;
+}
+
+.header::after {
+  background-image: none !important;
+}
+
+.genericTitle {
+  color: color($colors, basic);
+  text-align: center;
+  font-size: 24px;
+  padding: 15px 0 20px 0;
+}
+
+.inHeader {
+  text-align: center;
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  button {
+    text-transform: lowercase;
+    color: color($colors, basic);
+    font-family: $font-family-normal !important;
+    font-size: 0.7em;
+    font-weight: bold;
+  }
+}
+
+.social-auth {
+  //clear: both;
+  ////display: inline-block;
+  //width: 100%;
+  //position: absolute;
+  //bottom: 40px;
+
+  padding-top: 25px;
+}
+
+// Flip leafs
+.ion-ios-leaf-outline {
+  transform: scaleX(-1);
+}
+
+// Flip leafs
+.ion-ios-leaf {
+  transform: scaleX(-1);
+}
+
+.back-icon {
+  font-size: 35px;
+}
+
+.page-back-button, .page-back-button:hover {
+  //padding-top: 10px;
+  opacity: 1;
+}
+
+.button-transparent, .button-transparent:hover {
+  background-color: transparent;
+  color: #1c5379;
+  box-shadow: none;
+  border: none;
+  height: 50px;
+  ion-icon {
+    font-size: 30px;
+  }
+}
+
+.posts-grid {
+  margin-top: 0px;
+  margin-bottom: 40px;
+
+  .post-row {
+    font-size: 14px;
+
+    .user-profile {
+      padding-top: 10px;
+      font-family: $font-family-normal !important;
+      text-align: center;
+      //background: #357782;
+      //background: linear-gradient(to right, rgba(94, 133, 159, 0.7), rgba(163, 200, 184, 0.7));
+      background: linear-gradient(to right,
+              rgba(28, 83, 121, 0.7),
+              rgba(89, 155, 128, 0.7)
+      );
+      img.profile-image {
+        border-radius: 50%;
+        width: 35px;
+      }
+      .profile-name, span {
+        color: #FAFAFA;
+      }
+      .profile-karma {
+        color: #FAFAFA !important;
+        font-size: 0.8em;
+      }
+      .profile-leafs {
+        padding-top: 5px;
+        font-size: 0.8em;
+        color: #31715F;
+
+        .leaf-practitioner {
+          color: #356A85;
+        }
+        .leaf-health-user {
+          color: #31715F;
+        }
+
+      }
+    }
+
+    .user-profile-reply {
+      background: linear-gradient(to right,
+              rgba(28, 83, 121, 0.5),
+              rgba(89, 155, 128, 0.5)
+      ) !important;
+      //color: #1c5379 !important;
+    }
+
+    .post-container {
+      padding: 0;
+      .post-header {
+        padding: 5px 5px 0 5px;
+        float: left;
+      }
+      .post-menu {
+        float: right;
+        font-size: 30px;
+        padding: 0 10px;
+        color: #999;
+        line-height: 10px;
+        margin-top: 10px;
+
+        ion-icon[name="ios-more"] {
+          line-height: 10px;
+        }
+      }
+      .time-posted {
+        color: #909191;
+        font-size: 0.8em;
+      }
+      .post-content {
+        color: #4780A1;
+        padding: 5px;
+        clear: both;
+
+        .post-image {
+          text-align: center;
+          top: -50%;
+          position: absolute;
+          left: 0;
+        }
+        .with-min-height-post {
+          min-height: 80px;
+          span {
+            font-family: inherit;
+            //color: #47809C;
+          }
+        }
+        .with-min-height-reply {
+          min-height: 45px;
+          span, strong {
+            font-family: inherit;
+            //color: #4D839F;
+          }
+        }
+        .post-body {
+          color: #47809C;
+          //height:80px;
+          line-height: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          word-wrap: break-word;
+          -webkit-box-orient: vertical;
+
+          span, div {
+            font-family: inherit;
+            //color: inherit;
+          }
+        }
+        .post-meta-wrapper {
+          margin-top: 10px;
+          height: 13rem;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .post-body-full {
+          //color: #4D839F;
+
+          span, div {
+            font-family: inherit;
+            color: inherit;
+          }
+        }
+
+        .post-body-reply {
+          color: #4D839F;
+          //height:80px;
+          line-height: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          word-wrap: break-word;
+          -webkit-box-orient: vertical;
+        }
+        .post-a-leaf {
+          float: left;
+          color: rgba(28, 83, 121, 0.3);
+          //font-size: 1.2em;
+          padding-top: 15px;
+          width: 90%;
+        }
+        .post-a-photo {
+          float: right;
+          color: #B3C7D2;
+          font-size: 1.6em;
+          padding-top: 12px;
+        }
+      }
+      .post-footer {
+        border-top: 1px solid #D8DBDB;
+        font-size: 0.9em;
+        //padding: 5px 0 0 5px;
+        ion-icon {
+          font-size: 1.4em;
+        }
+      }
+
+      .text-gray {
+        font-family: $font-family-normal !important;
+        color: #A0B7BC;
+        span {
+          color: #A0B7BC;
+        }
+      }
+      .text-blue {
+        font-family: $font-family-normal !important;
+        color: color($colors, basic);
+      }
+
+    }
+    ion-col {
+      div, span {
+        font-family: $font-family-normal;
+        color: color($colors, basic);
+      }
+    }
+
+    margin: 5px 5px;
+    //border-right: 1px solid #A0ADB4;
+    //border-bottom: 1px solid #A0ADB4;
+    background: #ffffff; //rgba(240, 245, 246, 1);//0.7
+  }
+
+  .post-row-reply {
+    width: 100%;
+    font-size: 14px;
+    border-top: 1px solid #D8DBDB;
+    .user-profile {
+      padding: 5px 0 0 0;
+      font-family: $font-family-normal !important;
+      text-align: center;
+      background: linear-gradient(to right,
+              rgba(28, 83, 121, 0.5),
+              rgba(89, 155, 128, 0.5)
+      ) !important;
+      img.profile-image {
+        border-radius: 50%;
+        width: 35px;
+      }
+    }
+    .reply-field {
+      //border: 1px solid #e7e9e9;
+      border: 1px solid rgba(194, 195, 199, 0.7);
+      padding: 8px 20px;
+      margin-left: 2px;
+      display: block;
+      //color: rgba(128,145,154,0.5);
+      background-color: rgba(238, 238, 238, 0.5);
+      .reply-text {
+        color: rgba(128, 145, 154, 0.5);
+        ion-icon {
+          color: #80919A !important;
+        }
+      }
+      .reply-camera {
+        float: right;
+        color: #9FB1B6 !important;
+        font-size: 20px;
+        position: relative;
+        top: -3px;
+      }
+    }
+    .reply-send {
+      color: #9FB1B6;
+      font-size: 20px;
+      padding-top: 10px;
+    }
+  }
+}
+
+.profileContainer {
+
+  .scroll-content {
+    background-image: url('../assets/background/profile-BG@3x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  color: #B8D2C6;
+  font-size: 1.6rem;
+
+  .user-profile-bg {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    filter: blur(35px);
+    height: 230px;
+    opacity: 0.8;
+  }
+
+  .user-profile-image {
+    position: absolute;
+    top: 20px;
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+
+    img {
+      margin-top: 20px;
+      border-radius: 50%;
+      width: 150px;
+      //filter: drop-shadow(0px 0px 70px #fff);
+      text-align: center;
+    }
+
+    .user-name {
+      font-size: 26px;
+      color: #1c5379;
+      //text-shadow: 0 0 2px #FFF;
+      font-family: $font-family-normal !important;
+    }
+  }
+
+  .profile-info-grid {
+    margin: 0;
+    padding: 0;
+    color: #1D5479;
+
+    .info-cell {
+      text-align: center;
+      background: #EAEEEA;
+      height: 55px;
+
+      &:not(:last-of-type) {
+        border-right: 1px solid #fff;
+      }
+    }
+
+    .info-cell-title {
+    }
+    .info-cell-value {
+      font-size: 20px;
+      //font-weight: 600;
+    }
+
+    .karma {
+      border-bottom: 1px solid #fff;
+    }
+
+    .leaves {
+      border-bottom: 1px solid #fff;
+    }
+
+    .impact {
+      border-bottom: 1px solid #fff;
+
+    }
+
+    .about-user {
+
+      padding-top: 30px;
+
+      .timeline-title {
+        font-size: 1.4em;
+        margin: 0;
+        text-align: center;
+      }
+
+      .personal {
+        margin: 0 40px;
+        padding: 10px 0;
+        text-align: center;
+        //border-bottom: 1px solid #A5C2C3;
+      }
+
+      .description {
+        margin: 10px 40px;
+        text-align: center;
+      }
+
+    }
+
+    .mood {
+      //background: linear-gradient(to right, #C9DFE5, #31CAED);
+      border-bottom: 1px solid #fff;
+      z-index: 10;
+    }
+
+    .what-to-do {
+      margin: 0;
+      padding: 0;
+      button {
+        font-family: $font-family-normal;
+        font-size: 1.5em;
+        background: #357782;
+        background: linear-gradient(to right, rgba(28, 83, 121, 0.8), rgba(89, 171, 142, 0.8)); //#1c5379 -> #59ab8e
+        padding: 50px 0;
+        margin: 0;
+        color: #B8D2C6;
+        text-transform: lowercase;
+      }
+    }
+
+    .personalize-branch {
+      font-family: $font-family-normal;
+    }
+
+    .user-details {
+      text-align: center;
+      background: #EAEEEA;
+      font-family: $font-family-normal;
+      line-height: 10px;
+
+      p {
+        font-family: inherit;
+        color: #1C5379;
+        span {
+          font-family: inherit;
+        }
+      }
+    }
+
+  }
+
+  .hideMoodBar {
+    transform: translate(9999px);
+    opacity: 0;
+  }
+
+  .displayMoodBar {
+    transition: opacity 1s linear;
+    transform: translate(0);
+    opacity: 1;
+  }
+
+  .mood-item {
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    padding-top: 30px;
+    color: color($colors, basic);
+    height: 55px;
+    font-size: 15px;
+    //opacity: 0.8;
+  }
+  .angry {
+    background: #FF2800 !important;
+    border-bottom: none;
+    color: #ffffff;
+  }
+  .sad {
+    background: #767676 !important;
+    border-bottom: none;
+    color: #ffffff;
+  }
+  .peaceful {
+    background: #B1E3FC !important;
+    border-bottom: none;
+  }
+  .happy {
+    background: #FBE79F !important;
+    border-bottom: none;
+  }
+  .healing {
+    background: #BBFAE3 !important;
+    border-bottom: none;
+  }
+  .inspired {
+    background: #9F8AD1 !important;
+    border-bottom: none;
+  }
+  .loved {
+    background: #DA7E9C !important;
+    border-bottom: none;
+  }
+  .depressed {
+    background: #00146D !important;
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.small_profile_pic {
+  border-radius: 50%;
+  width: 35px;
+}
+
+.karma-1 {
+  color: #6FB5C0 !important;
+}
+
+.karma-2 {
+  color: #2E9AD9 !important;
+}
+
+.karma-3 {
+  color: #E81580 !important;
+}
+
+.karma-4 {
+  color: #F28C42 !important;
+}
+
+.karma-5 {
+  color: #FAD451 !important;
+}
+
+.popover-content {
+  background: none;
+}
+
+.popover-md .popover-content {
+  left: -0px !important;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  margin-top: 20px;
+}
+
+.popover-ios .popover-content {
+  border-radius: 0;
+  background: transparent;
+  //padding-left:2px;
+}
+
+.popover-ios .popover-arrow {
+  display: none !important;
+}
+
+.popover-ios .popover-arrow::after {
+  border: 1px solid #8A4C48;
+}
+
+.popover-viewport {
+  background: transparent;
+}
+
+.loading-wrapper {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.list-ios > .item-block:first-child {
+  border: 0 !important;
+}
+
+.mt-header {
+  margin-top: 10px;
+}
+
+.ios .tabs:not(.tabs-ios[tabsPlacement=top]) .tabbar {
+  background: rgb(229, 231, 229) !important;
+  padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+}

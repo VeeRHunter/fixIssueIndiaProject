@@ -1,0 +1,24 @@
+<ion-content class="tutorial-page">
+  <ion-slides pager>
+    <ion-slide *ngFor="let step of steps; let slideIndex = index;">
+      <ion-toolbar>
+        <ion-buttons end *ngIf="slideIndex !== (steps.length - 1)">
+          <button ion-button (click)="markAsComplete()" color="primary">Skip</button>
+        </ion-buttons>
+      </ion-toolbar>
+      <img *ngIf="step.background_image_url" [src]="step.background_image_url" class="slide-image"/>
+      <img *ngIf="!step.background_image_url" class="slide-image" src="../../assets/background/slider-background.png"/>
+
+      <h2 class="slide-title">{{ step.title }}</h2>
+      <p>{{ step.message }}</p>
+
+      <div class="nav-wrapper">
+        <button *ngIf="slideIndex === (steps.length - 1)" ion-button (click)="markAsComplete()" large clear icon-end
+                color="primary">
+          Continue
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

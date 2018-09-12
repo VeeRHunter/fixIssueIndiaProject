@@ -1,0 +1,66 @@
+page-personalize-branch {
+
+  color: #B8D2C6;
+
+  ion-content {
+    background-image: url('../assets/background/SETTINGS-BG@1x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .toolbar-background, .toolbar-background-md, .register-bar {
+    background-color: transparent !important;
+  }
+
+  .header::after {
+    background-image: none !important;
+  }
+
+  button.activated {
+    background: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  .underlined-button {
+
+    //background-color:rgba(255, 255, 255, 0.3);
+    background: none;
+    font-size: 18px;
+    padding: 15px 0 15px 0;
+    color: #1C5379;
+    text-transform: none;
+    //margin-bottom: 7px;
+    box-shadow: none;
+
+    margin-right: 50px;
+
+    .button-inner {
+      justify-content: flex-start;
+    }
+
+    .bottom-bordered {
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+      text-align: left;
+    }
+
+    .col-left {
+      text-align: right;
+      padding-right: 10px;
+    }
+    .col-center {
+      text-align: left;
+      padding-left: 0;
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+    }
+    .col-right {
+      text-align: right;
+      padding-left: 0;
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+    }
+
+  }
+
+
+}

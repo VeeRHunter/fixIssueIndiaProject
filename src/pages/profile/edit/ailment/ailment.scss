@@ -1,0 +1,39 @@
+page-profile-edit-ailment {
+
+  ion-content {
+    background-image: url('../assets/background/SETTINGS-BG@1x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  ion-list {
+    border: none !important;
+  }
+
+  ion-item {
+    ion-label {
+      color: color($colors, basic) !important;
+      font-family: $font-family-normal;
+    }
+    //background-color: rgba(255, 255, 255, 0.3) !important;
+    background: none !important;
+    padding-left: 10px !important;
+    font-size: 26px;
+    text-transform: none;
+    margin-bottom: 0 !important;
+    box-shadow: none;
+    .item-inner {
+      border: none !important;
+    }
+
+    .button-inner {
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+    }
+  }
+
+}
+
+.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+  border: none !important;
+}

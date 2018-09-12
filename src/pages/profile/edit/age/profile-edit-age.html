@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-row class="mt-header">
+        <ion-col col-1 text-left>
+            <button ion-button class="page-back-button button-transparent" (click)="goBackPage()">
+                <ion-icon class="back-icon" name="ios-arrow-back"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-11 text-center>
+            <div class="genericTitle inHeader">
+                Enter your Birthdate
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+
+
+    <div style="padding-top: 50px; padding-left: 20px; padding-right: 20px" *ngIf="!dataLoading">
+        <ion-list no-lines>
+        <ion-item>
+            <ion-label fixed>Day</ion-label>
+            <ion-select [(ngModel)]="day">
+                <ion-option *ngFor="let day of days" [value]="day">{{day}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Month</ion-label>
+            <ion-select [(ngModel)]="month">
+                <ion-option *ngFor="let month of months" [value]="month">{{month}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label fixed>Year</ion-label>
+            <ion-select [(ngModel)]="year">
+                <ion-option *ngFor="let year of years" [value]="year">{{year}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-col>
+            <button ion-button full (click)="onSubmit()" class="submit-button next-step">Done</button>
+        </ion-col>
+        </ion-list>
+    </div>
+
+</ion-content>

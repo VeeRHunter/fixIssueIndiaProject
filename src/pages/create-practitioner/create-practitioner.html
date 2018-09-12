@@ -1,0 +1,142 @@
+<ion-header>
+    <ion-row class="mt-header">
+        <ion-col col-1 text-left>
+            <button ion-button class="page-back-button button-transparent" (click)="goBackPage()">
+                <ion-icon class="back-icon" name="ios-arrow-back" *ngIf="navCtrl.canGoBack()"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-10 text-center>
+            <div class="genericTitle inHeader">
+                <span *ngIf="practitionerAccount.field_of_practice">{{practitionerAccount.field_of_practice.name}}</span>
+                <span *ngIf="!practitionerAccount.field_of_practice">Are you a Practitioner?</span>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+
+    <div style="padding-top: 50px; padding-left: 20px; padding-right: 20px">
+        <button ion-button full class="underlined-button" (click)="onFieldOfPractice()">
+            <span *ngIf="practitionerAccount.field_of_practice">{{practitionerAccount.field_of_practice.name}}</span>
+            <span *ngIf="!practitionerAccount.field_of_practice">Field of practice</span>
+
+            <span *ngIf="practitionerAccount.field_of_practice" style="position: absolute; right: 10px">
+                <ion-icon name="ios-checkmark"></ion-icon>
+            </span>
+        </button>
+        <div class="genericTitle">Submit the following</div>
+
+        <ion-row class="row-button">
+
+            <div col-2>
+                <button ion-button full clear float-left class="underlined-button"
+                        (click)="onPhotoView('medical_licence_url')" *ngIf="practitionerAccount.medical_license_url">
+                    <img src="{{practitionerAccount.medical_license_url}}">
+                </button>
+                <button ion-button full clear float-left class="underlined-button" *ngIf="!practitionerAccount.medical_license_url">
+                    <ion-icon  name="ios-camera-outline"></ion-icon>
+                </button>
+            </div>
+            <div col-10>
+                <button ion-button full clear class="underlined-button button-float-left" (click)="onUploadImage('medical_licence')" item-right>
+                    <span style="padding-left: 10px">Upload practitioner licence</span>
+                    <span *ngIf="medical_licence_file && medical_licence_file.body"
+                          style="position: absolute; right: 10px">
+                        <ion-icon name="ios-checkmark"></ion-icon>
+                    </span>
+                </button>
+            </div>
+        </ion-row>
+
+        <ion-row class="row-button">
+            <div col-2>
+                <button ion-button full clear float-left class="underlined-button"
+                        (click)="onPhotoView('medical_certificate_url')" *ngIf="practitionerAccount.medical_certificate_url">
+                    <img src="{{practitionerAccount.medical_certificate_url}}">
+                </button>
+                <button ion-button full clear float-left class="underlined-button" *ngIf="!practitionerAccount.medical_certificate_url">
+                    <ion-icon  name="ios-camera-outline"></ion-icon>
+                </button>
+            </div>
+            <div col-10>
+                <button ion-button full float-left class="underlined-button button-float-left" (click)="onUploadImage('medical_certificate')">
+                    <span style="padding-left: 10px">Upload medical ID</span>
+                    <span *ngIf="medical_certificate_file && medical_certificate_file.body"
+                          style="position: absolute; right: 10px">
+                        <ion-icon name="ios-checkmark"></ion-icon>
+                    </span>
+                </button>
+            </div>
+        </ion-row>
+
+        <ion-row class="row-button">
+            <div col-2>
+                <button ion-button full clear float-left class="underlined-button"
+                        (click)="onPhotoView('id_card_url')" *ngIf="practitionerAccount.id_card_url">
+                    <img src="{{practitionerAccount.id_card_url}}">
+                </button>
+                <button ion-button full clear float-left class="underlined-button" *ngIf="!practitionerAccount.id_card_url">
+                    <ion-icon  name="ios-camera-outline"></ion-icon>
+                </button>
+            </div>
+            <div col-10>
+                <button ion-button full class="underlined-button button-float-left" (click)="onUploadImage('id_card')">
+                    <span style="padding-left: 10px">ID card</span>
+                    <span *ngIf="id_card_file && id_card_file.body"
+                          style="position: absolute; right: 10px">
+                        <ion-icon name="ios-checkmark"></ion-icon>
+                    </span>
+                </button>
+            </div>
+        </ion-row>
+
+        <ion-row class="row-button">
+            <div col-2>
+                <button ion-button full clear float-left class="underlined-button"
+                        (click)="onPhotoView('driver_license_url')" *ngIf="practitionerAccount.driver_license_url">
+                    <img src="{{practitionerAccount.driver_license_url}}">
+                </button>
+                <button ion-button full clear float-left class="underlined-button" *ngIf="!practitionerAccount.driver_license_url">
+                    <ion-icon  name="ios-camera-outline"></ion-icon>
+                </button>
+            </div>
+            <div col-10>
+                <button ion-button full class="underlined-button button-float-left" (click)="onUploadImage('driver_license')">
+                    <span style="padding-left: 10px">Driver Licence<!-- or Passport--></span>
+                    <span *ngIf="driver_license_file && driver_license_file.body"
+                          style="position: absolute; right: 10px">
+                        <ion-icon name="ios-checkmark"></ion-icon>
+                    </span>
+                </button>
+            </div>
+        </ion-row>
+
+        <!--<ion-row class="row-button">-->
+            <!--<div col-2>-->
+                <!--<button ion-button full clear float-left class="underlined-button"-->
+                        <!--(click)="onPhotoView('other_document_url')" *ngIf="practitionerAccount.other_document_url">-->
+                    <!--<img src="{{practitionerAccount.other_document_url}}">-->
+                <!--</button>-->
+                <!--<button ion-button full clear float-left class="underlined-button" *ngIf="!practitionerAccount.other_document_url">-->
+                    <!--<ion-icon  name="ios-camera-outline"></ion-icon>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<div col-10>-->
+                <!--<button ion-button full class="underlined-button button-float-left" (click)="onUploadImage('other_document')">-->
+                    <!--<span style="padding-left: 10px">Alternative health licence</span>-->
+                    <!--<span *ngIf="other_document_file && other_document_file.body"-->
+                          <!--style="position: absolute; right: 10px">-->
+                        <!--<ion-icon name="ios-checkmark"></ion-icon>-->
+                    <!--</span>-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</ion-row>-->
+
+        <ion-row class="actions-container">
+            <button ion-button full (click)="onSubmit()" class="submit-button next-step">Done</button>
+        </ion-row>
+    </div>
+    <div class="footer-note">Please be advised that it may take up to 72 hours to verify your credentials</div>
+
+</ion-content>

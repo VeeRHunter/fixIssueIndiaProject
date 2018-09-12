@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-row class="mt-header">
+    <ion-col col-1 text-left>
+      <button ion-button class="page-back-button button-transparent" (click)="goBackPage()">
+        <ion-icon class="back-icon" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-11 text-center>
+      <div class="genericTitle inHeader">
+        Enter your Location
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <div style="padding-top: 50px; padding-left: 20px; padding-right: 20px">
+    <ion-list no-lines style="margin-bottom: 10px;">
+      <ion-item>
+        <ion-label for="autocomplete">City</ion-label>
+        <ion-input #autocomplete id="autocomplete" [placeholder]="'Enter a location'"
+                   (keypress)="updateSearch($event)"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+        <ion-icon name="pin"></ion-icon>  {{ item.description }}
+      </ion-item>
+    </ion-list>
+    <ion-col>
+      <button ion-button full (click)="onSubmit()" class="submit-button next-step">Done</button>
+    </ion-col>
+  </div>
+</ion-content>

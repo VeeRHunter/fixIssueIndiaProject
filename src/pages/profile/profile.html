@@ -1,0 +1,135 @@
+<ion-content class="profileContainer">
+
+    <div *ngIf="!dataLoading">
+        <div text-center class="user-profile-bg" [style.background-image]="userImageBg">
+
+        </div>
+        <div class="user-profile-image">
+            <img [src]="userImage" (click)="onChangeProfileImage()" tappable>
+            <div class="user-name">
+                {{userProfile.first_name}} {{userProfile.last_name}}
+            </div>
+        </div>
+
+        <div [class]="displayMoodBar ? 'displayMoodBar' : 'hideMoodBar'"
+             style="width: 25%; position: absolute; right: 0; top: 65px; z-index: 999; float: right;">
+            <div *ngFor="let mood of moods">
+                <div class="mood-item {{mood.mood}}" (click)="onMoodSelect(mood)" tappable>{{mood.mood}}</div>
+            </div>
+        </div>
+
+        <ion-grid class="profile-info-grid">
+            <ion-row>
+                <ng-container *ngIf="!isApprovedPractitioner(userProfile)">
+                    <ion-col col-3 class="info-cell karma">
+                        <div class="info-cell-title">karma</div>
+                        <div class="info-cell-value">{{userProfile.total_karma_points}}</div>
+                    </ion-col>
+                    <ion-col col-3 class="info-cell leaves">
+                        <div class="info-cell-title">leaves</div>
+                        <div class="info-cell-value">{{userProfile.total_posts}}</div>
+                    </ion-col>
+                    <ion-col col-3 class="info-cell impact">
+                        <div class="info-cell-title">impact</div>
+                        <div class="info-cell-value">{{userProfile.total_impact_points}}</div>
+                    </ion-col>
+                    <ion-col col-3 class="info-cell mood {{currentMoodClass}}" (click)="onMoodChange()"
+                             *ngIf="!displayMoodBar" tappable>
+                        <div class="info-cell-title">mood</div>
+                        <div class="info-cell-value" style="font-size: 15px; padding-top: 6px" *ngIf="mood"><span>{{mood.mood}}</span>
+                        </div>
+                    </ion-col>
+                </ng-container>
+                <ng-container *ngIf="isApprovedPractitioner(userProfile)">
+                    <ion-col col-4 class="info-cell karma">
+                        <div class="info-cell-title">karma</div>
+                        <div class="info-cell-value">{{userProfile.total_karma_points}}</div>
+                    </ion-col>
+                    <ion-col col-4 class="info-cell leaves">
+                        <div class="info-cell-title">leaves</div>
+                        <div class="info-cell-value">{{userProfile.total_posts}}</div>
+                    </ion-col>
+                    <ion-col col-4 class="info-cell impact">
+                        <div class="info-cell-title">impact</div>
+                        <div class="info-cell-value">{{userProfile.total_impact_points}}</div>
+                    </ion-col>
+                </ng-container>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12 class="what-to-do">
+                    <button ion-button full large (click)="onDoMore()" tappable>what would you like to do?</button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="user-details" text-center col-12>
+                    <p>{{userProfile.first_name}} {{userProfile.last_name}}</p>
+                    <ng-container *ngIf="!isApprovedPractitioner(userProfile)">
+                        <p>
+                            <span>Health User</span>
+                        </p>
+                        <p>{{userProfile.ailment_category?.name}}</p>
+                    </ng-container>
+                    <ng-container *ngIf="isApprovedPractitioner(userProfile)">
+                        <p>
+                            <span>Practitioner</span>
+                        </p>
+                        <p>{{userProfile.practitioner_account.field_of_practice.name}}</p>
+                    </ng-container>
+                    <p><span *ngIf="userProfile.city">{{userProfile.city}}</span><span *ngIf="userProfile.country">, {{userProfile.country}}</span></p>
+                    <p>
+                        <span *ngIf="GENDER_MALE == userProfile.gender">Male<span *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="GENDER_FEMALE == userProfile.gender">Female<span *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="GENDER_INDETERMINATE == userProfile.gender">Indeterminate<span *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="GENDER_INTERSEX == userProfile.gender">Intersex<span *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="GENDER_OTHER == userProfile.gender">Other<span *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="userProfile.date_of_birth">{{getAge(userProfile.date_of_birth)}} years</span>
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12 class="about-user">
+                    <ng-container *ngIf="!isApprovedPractitioner(userProfile)">
+                        <p class="timeline-title">
+                            my story
+                            <ion-icon name="md-create" style="padding-left: 10px; font-size: 0.8em" (click)="onProfileEdit()"></ion-icon>
+                        </p>
+                    </ng-container>
+                    <ng-container *ngIf="isApprovedPractitioner(userProfile)">
+                        <p class="timeline-title">
+                            about me
+                            <ion-icon name="md-create" style="padding-left: 10px; font-size: 0.8em" (click)="onProfileEdit()"></ion-icon>
+                        </p>
+                    </ng-container>
+                    <p class="personal" *ngIf="userProfile.personal_bio">"{{userProfile.personal_bio}}"</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid class="posts-grid">
+            <ion-row class="post-row">
+                <ion-col col-3 class="user-profile">
+                    <img [src]="userImage" class="profile-image">
+                </ion-col>
+                <ion-col col-9 class="post-container">
+                    <div class="post-content" (click)="onPostAdd()" tappable>
+                        <div class="post-a-leaf">would you like to post a leaf?</div>
+                        <!--<div class="post-a-photo"><ion-icon name="ios-camera"></ion-icon></div>-->
+                    </div>
+                </ion-col>
+            </ion-row>
+
+            <div *ngIf="!posts?.length" style="padding: 20px 0">
+                <no-data></no-data>
+            </div>
+
+            <div *ngFor="let post of posts">
+                <post [post]="post" [userProfile]="userProfile" (isReloadNeeded)="handleReload($event)"></post>
+            </div>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+
+        </ion-grid>
+    </div>
+</ion-content>

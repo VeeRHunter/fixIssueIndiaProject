@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-row class="mt-header">
+    <ion-col col-2 text-left>
+      <button ion-button class="page-back-button button-transparent" (click)="goBackPage()">
+        <ion-icon class="back-icon" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-8 text-center>
+      <div class="genericTitle inHeader">
+        <span *ngIf="parentPost">reply to post</span>
+        <span *ngIf="!parentPost">share leaf</span>
+      </div>
+    </ion-col>
+    <ion-col col-2 text-right style="padding-top: 10px; padding-right: 10px">
+      <button ion-button class="button-transparent" (click)="onPostSave()">
+        <ion-icon name="md-send" style="font-size: 36px; color: #1c5379;"></ion-icon>
+        &nbsp;&nbsp;&nbsp;
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-header>
+<ion-content>
+  <div style="padding-top: 0; height: 100%; background-color:rgba(250, 250, 250, 0.5);">
+    <ion-grid class="posts-grid" style="margin-top: 0">
+      <ion-row class="post-row">
+        <ion-col col-3 class="user-profile">
+          <img [src]="getUserProfileImage(profile)" style="border-radius: 50%; width: 35px;">
+          <div class="profile-name">
+            <span>{{profile.first_name}}</span>
+          </div>
+          <div class="profile-karma">karma {{profile.total_karma_points}}</div>
+          <profile-leaves [userProfile]="profile"></profile-leaves>
+        </ion-col>
+        <ion-col col-9 class="post-container">
+          <ion-item class="post-content" style="background: #EFF9F9 !important;">
+            <ion-textarea placeholder="what would you like to say?" [(ngModel)]="post.body" rows="6" #focusInput>
+            </ion-textarea>
+          </ion-item>
+          <button ion-button clear icon-only (click)="toggled = !toggled" class="emoji-btn"
+                  [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'bottom'"
+                  (emojiPickerSelect)="handleSelection($event)">
+            <ion-icon name="happy-outline"></ion-icon>
+          </button>
+          <ion-item class="post-content" style="background: #EFF9F9 !important;">
+            <ion-input placeholder="enter youtube video link here..."
+                       [(ngModel)]="post.youtube_video_key"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3 class="user-profile" style="background: #C5D7D9 !important;">
+
+        </ion-col>
+        <ion-col col-9 class="post-container" style="background: #FFFFFF !important;">
+          <div class="post-content">
+            <div class="post-image-thumb" *ngIf="postImage">
+              <img src="data:image/{{this.postImage?.extension}};base64,{{this.postImage?.body}}">
+              <span class="remove-image" (click)="removeImage()" tappable>
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                            </span>
+            </div>
+            <div (click)="onAddPostImage()" tappable>
+              <div class="post-a-leaf" style="padding-top: 5px">Add a photo to your post?</div>
+              <div class="post-a-photo" style="padding-top: 3px">
+                <ion-icon name="ios-camera"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+</ion-content>

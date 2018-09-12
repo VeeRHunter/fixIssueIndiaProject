@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-row class="mt-header">
+        <ion-col col-12 text-center>
+            <div class="genericTitle inHeader">
+                Search
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+
+    <div style="padding-top: 10px; padding-left: 20px; padding-right: 20px">
+        <ion-row>
+            <ion-col col-6 text-center>
+                <button ion-button full [class.active-button]="searchMode == SEARCHMODE_USER" class="top-button "
+                        align-self-center (click)="onChangeSearchMode('user')">User
+                </button>
+            </ion-col>
+            <ion-col col-6 text-center>
+                <button ion-button full [class.active-button]="searchMode == SEARCHMODE_PRACTITIONER" class="top-button"
+                        align-self-center (click)="onChangeSearchMode('practitioner')">Practitioner
+                </button>
+            </ion-col>
+        </ion-row>
+
+        <ion-item style="padding-top: 15px !important;">
+            <ion-input type="text" [(ngModel)]="searchName" (keypress)="loadData()" placeholder="Type your search here"></ion-input>
+        </ion-item>
+
+        <div class="loading-results" *ngIf="searchedInProgress">
+            <ion-spinner class="spinner-energized"></ion-spinner>
+            <span class="search-in-progress">
+                Searching for <span *ngIf="searchName">"{{searchName}}"</span>
+                <span *ngIf="!searchName && searchMode == SEARCHMODE_USER">all users</span>
+                <span *ngIf="!searchName && searchMode == SEARCHMODE_PRACTITIONER">all practitioners</span>
+            </span>
+        </div>
+        <div class="search-result">
+            <div class="results-header" *ngIf="usersFound && !searchName && searchMode == SEARCHMODE_USER">Top users search</div>
+            <div class="results-header" *ngIf="usersFound && !searchName && searchMode == SEARCHMODE_PRACTITIONER">Top practitioners search</div>
+
+            <ion-row class="profile-link" *ngFor="let userProfile of usersFound"
+                     tappable [attr.data-profileid]="userProfile.id">
+                <ion-col col-2 class="user-profile">
+                    <img [src]="getUserProfileImage(userProfile)" class="profile-image">
+                </ion-col>
+                <ion-col col>
+                    <div class="col-content username">{{userProfile.first_name}}</div>
+                </ion-col>
+                <ion-col col *ngIf="searchMode == SEARCHMODE_USER">
+                    <div class="col-content since">since {{userProfile.created_at | slice:0:4}}</div>
+                </ion-col>
+                <ion-col col>
+                    <div class="col-content karma">karma {{userProfile.total_karma_points}}</div>
+                </ion-col>
+            </ion-row>
+
+            <div class="no-results" *ngIf="searchedInProgress == false && usersFound.length == 0">
+                No result found
+            </div>
+        </div>
+    </div>
+
+</ion-content>

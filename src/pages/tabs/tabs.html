@@ -1,0 +1,27 @@
+<ion-tabs selectedIndex="1" (ionChange)="tabChanged($event)">
+  <ion-tab [root]="notificationPage" tabIcon="md-heart" tabTitle="Notifications" class="tab-notification"
+           [tabBadge]="notificationsCount" id="tab-notification">
+  </ion-tab>
+  <ion-tab [root]="profilePage" tabIcon="contact" tabTitle="Profile"></ion-tab>
+  <!--<ion-tab [root]="profilePage" tabIcon="ios-leaf-outline" tabTitle="Saved Leaves"></ion-tab>-->
+  <ion-tab [root]="treeOfLife" tabIcon="ios-flower" tabTitle="Tree of life"
+           [rootParams]="tolParams"
+           *ngIf="dataLoaded && !isApprovedPractitioner(profile)"></ion-tab>
+  <ion-tab [root]="practitionerHelpList"
+           [rootParams]="practitionerHelpListParams"
+           tabIcon="ios-paper-outline" tabTitle="Help list"
+           *ngIf="dataLoaded && isApprovedPractitioner(profile)">
+  </ion-tab>
+  <ion-tab [root]="settingsPage"
+           tabIcon="ios-settings"
+           tabTitle="Settings"
+           [rootParams]="settingsPageParams"
+           *ngIf="dataLoaded">
+  </ion-tab>
+  <ion-tab [root]="searchPage"
+           tabIcon="ios-search-outline"
+           tabTitle="Search"
+           [rootParams]="searchPageParams"
+           *ngIf="dataLoaded">
+  </ion-tab>
+</ion-tabs>

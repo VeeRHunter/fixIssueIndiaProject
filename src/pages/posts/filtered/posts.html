@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-row class="mt-header">
+        <ion-col col-2 text-left>
+            <button ion-button class="page-back-button button-transparent" (click)="goBackPage()">
+                <ion-icon class="back-icon" name="ios-arrow-back"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-8 text-center>
+            <div class="genericTitle inHeader">
+                #{{hashtag}}
+            </div>
+        </ion-col>
+        <ion-col col-2 text-right></ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+
+    <div style="padding-top: 0; height: 100%; background-color:rgba(250, 250, 250, 0.5);">
+
+        <ion-grid class="posts-grid">
+            <div *ngFor="let post of posts">
+                <post [post]="post" [userProfile]="profile"></post>
+            </div>
+        </ion-grid>
+
+    </div>
+
+</ion-content>

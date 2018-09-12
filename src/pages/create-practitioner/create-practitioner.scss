@@ -1,0 +1,89 @@
+create-practitioner {
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+  ion-content {
+    background-image: url('../assets/background/SETTINGS-BG@1x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .header::after {
+    background-image: none !important;
+  }
+
+  ion-list {
+    border: none !important;
+  }
+
+  button.activated {
+    background: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  .underlined-button {
+    background: none;
+    font-size: 18px;
+    padding: 15px 0 15px 0;
+    color: #1C5379;
+    text-transform: none;
+    box-shadow: none;
+
+    margin-right: 50px;
+    margin-top: 15px;
+    border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+    text-align: left;
+
+    .button-inner {
+      justify-content: flex-start;
+    }
+  }
+
+
+  .button-float-left .button-inner {
+    justify-content:flex-start !important;
+  }
+
+  .title {
+    color: #1c5379;
+    text-align: center;
+    font-size: 26px;
+    padding: 10px;
+  }
+
+  .actions-container {
+    background: none;
+    margin-top: 20px;
+
+    .submit-button {
+      font-size: 1.5em;
+      background: linear-gradient(to right, rgba(28, 83, 121, 0.8), rgba(89, 171, 142, 0.8));
+      padding: 20px 0 20px 0;
+      margin: 0px 0 0 0;
+      color: #FFFFFF;
+      text-transform: none;
+    }
+
+  }
+
+  .row-button {
+
+    [col-1], [col-2], [col-10], [col-11] {
+      padding: 0;
+    }
+
+    button {
+      margin-bottom: 0;
+    }
+  }
+
+  .footer-note {
+    padding: 10px 20px;
+    text-align: center;
+    color: #1C5379;
+    font-size: 15px;
+  }
+
+}

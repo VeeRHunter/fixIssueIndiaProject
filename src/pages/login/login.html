@@ -1,0 +1,50 @@
+<ion-content class="card-background-page">
+
+    <div class="logo" text-center>
+        <img src="assets/logo/main-logo@3x.png"/>
+    </div>
+
+    <p>
+        <ion-input
+                *ngIf="step == 'step_username'"
+                type="text"
+                name="username"
+                placeholder="email"
+                [(ngModel)]="data.username"
+                (ngModelChange)="data.username = $event.toLocaleLowerCase()"
+                required
+                (change)="validate('username')"></ion-input>
+        <ion-input
+                *ngIf="step == 'step_password'"
+                type="password"
+                name="password"
+                placeholder="password"
+                [(ngModel)]="data.password"
+                required
+                (change)="validate('password')"></ion-input>
+    </p>
+
+    <ion-grid>
+        <ion-row class="social-auth">
+            <ion-col col-6>
+                <ion-row class="social-auth">
+                    <ion-col col-7></ion-col>
+                    <ion-col col-4><img src="assets/icon/fb-icon@3x.png" tappable (click)="loginWithFB()"></ion-col>
+                    <ion-col col-1></ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col col-6>
+                <ion-row class="social-auth">
+                    <ion-col col-1></ion-col>
+                    <ion-col col-4><img src="assets/icon/google-icon@3x.png" tappable (click)="loginWithGoogle()"></ion-col>
+                    <ion-col col-7></ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div class="footer-text" text-center>
+        <a (click)="onRegister()" *ngIf="step == 'step_username'" tappable>Create a New Account</a>
+        <a (click)="onForgotPassword()" *ngIf="step == 'step_password'" tappable>Forgot Password</a>
+    </div>
+</ion-content>

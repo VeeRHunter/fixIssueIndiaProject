@@ -1,0 +1,215 @@
+<ion-content [style.backgroundImage]="backgroundImage">
+
+    <ion-header>
+        <button ion-button large class="register-back-button button-transparent">
+            <ion-icon name="ios-arrow-back" *ngIf="step_previous" (click)="goToStep(step_previous)" tappable></ion-icon>
+            <ion-icon name="ios-arrow-back" *ngIf="!step_previous" (click)="goBackPage()" tappable></ion-icon>
+        </button>
+    </ion-header>
+
+    <div style="display: block; padding-top: 240px">
+
+        <div *ngIf="canDisplayTermsConfirmationMessage" class="termsConfirmationMessage">
+            <ion-row>
+                <ion-col class="question">
+                    By Signing up, I Agree with the Terms & Conditions
+                </ion-col>
+            </ion-row>
+            <ion-row class="terms-buttons">
+                <ion-col col-6 text-center>
+                    <button ion-button full (click)="onTermsAgreeNo()" style="border-right: 1px solid #eeeeee">no</button>
+                </ion-col>
+                <ion-col col-6 text-center>
+                    <button ion-button full (click)="onRegister()" [disabled]="submitButtonDisabled">yes</button>
+                </ion-col>
+            </ion-row>
+        </div>
+
+        <div class="register-label">
+            {{ registerLabelText }}
+        </div>
+
+        <form name="registerForm" #f="ngForm">
+            <ion-grid>
+                <ion-row class="input-item" *ngIf="'step_first_name' == step">
+                    <ion-col>
+                        <button ion-button large *ngIf="isFirstNameValid === false"
+                                class="button-transparent validation-button">
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                        <button ion-button large *ngIf="isFirstNameValid" class="button-transparent validation-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-9>
+                        <ion-input
+                                type="text"
+                                name="first_name"
+                                class="capitalize"
+                                placeholder="type here"
+                                [(ngModel)]="userRegistration.first_name"
+                                required
+                                (change)="validate('first_name')"
+                                style="text-align:right;"
+                                (keypress)="eventHandler($event.keyCode, isFirstNameValid)"
+                        ></ion-input>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button large *ngIf="isFirstNameValid" (click)="goToStep(step_next)"
+                                class="button-transparent next-step">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="input-item" *ngIf="'step_last_name' == step">
+                    <ion-col>
+                        <button ion-button large *ngIf="isLastNameValid === false"
+                                class="button-transparent validation-button">
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                        <button ion-button large *ngIf="isLastNameValid" class="button-transparent validation-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-9>
+                        <ion-input
+                                type="text"
+                                name="last_name"
+                                class="capitalize"
+                                placeholder="type here"
+                                [(ngModel)]="userRegistration.last_name"
+                                required
+                                (change)="validate('last_name')"
+                                (keypress)="eventHandler($event.keyCode, isLastNameValid)"></ion-input>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button large *ngIf="isLastNameValid" (click)="goToStep(step_next)"
+                                class="button-transparent next-step">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="input-item" *ngIf="'step_email' == step">
+                    <ion-col>
+                        <button ion-button large *ngIf="isEmailValid === false"
+                                class="button-transparent validation-button">
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                        <button ion-button large *ngIf="isEmailValid" class="button-transparent validation-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-9>
+                        <ion-input
+                                type="email"
+                                name="email"
+                                placeholder="type here"
+                                [(ngModel)]="userRegistration.email"
+                                required
+                                (change)="validate('email')"
+                                (keypress)="eventHandler($event.keyCode, isEmailValid)"></ion-input>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button large *ngIf="isEmailValid" (click)="goToStep(step_next)"
+                                class="button-transparent next-step">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row class="input-item" *ngIf="'step_email_repeat' == step">
+                    <ion-col>
+                        <button ion-button large *ngIf="isEmailRepeatValid === false"
+                                class="button-transparent validation-button">
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                        <button ion-button large *ngIf="isEmailRepeatValid"
+                                class="button-transparent validation-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-9>
+                        <ion-input
+                                type="email"
+                                name="email_repeat"
+                                placeholder="type here"
+                                [(ngModel)]="userRegistration.email_repeat"
+                                required
+                                (change)="validate('email_repeat')"
+                                (keypress)="eventHandler($event.keyCode, isEmailRepeatValid)"></ion-input>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button large *ngIf="isEmailRepeatValid" (click)="goToStep(step_next)"
+                                class="button-transparent next-step">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="input-item" *ngIf="'step_password' == step">
+                    <ion-col>
+                        <button ion-button large *ngIf="isPasswordValid === false"
+                                class="button-transparent validation-button">
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                        <button ion-button large *ngIf="isPasswordValid" class="button-transparent validation-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-9>
+                        <ion-input
+                                type="password"
+                                name="password"
+                                placeholder="type here"
+                                [(ngModel)]="userRegistration.password"
+                                required
+                                (change)="validate('password')"
+                                (keypress)="eventHandler($event.keyCode, isPasswordValid)"></ion-input>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button large *ngIf="isPasswordValid" (click)="goToStep(step_next)"
+                                class="button-transparent next-step">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </button>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="input-item" *ngIf="'step_password_repeat' == step && !canDisplayTermsConfirmationMessage">
+                    <ion-col>
+                        <button ion-button large *ngIf="isPasswordRepeatValid === false"
+                                class="button-transparent validation-button">
+                            <ion-icon name="close"></ion-icon>
+                        </button>
+                        <button ion-button large *ngIf="isPasswordRepeatValid"
+                                class="button-transparent validation-button">
+                            <ion-icon name="md-checkmark"></ion-icon>
+                        </button>
+                    </ion-col>
+                    <ion-col col-9>
+                        <ion-input
+                                type="password"
+                                name="password_repeat"
+                                placeholder="type here"
+                                [(ngModel)]="userRegistration.password_repeat"
+                                required
+                                (change)="validate('password_repeat')"
+                                (keypress)="eventHandler($event.keyCode, isPasswordRepeatValid)"></ion-input>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button large *ngIf="isPasswordRepeatValid" tappable
+                                (click)="displayTermsConfirmationMessage()" class="button-transparent next-step">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </button>
+                        <!--<button ion-button large *ngIf="isPasswordRepeatValid" type="submit" [disabled]="submitButtonDisabled"  class="button-transparent next-step">-->
+                        <!--<ion-icon name="ios-arrow-forward"></ion-icon>-->
+                        <!--</button>-->
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+
+    <div *ngIf="displayTermsFooterMessage()" class="termsFooterMessage">
+        By Signing up, I Agree to the <a (click)="displayTerms()" tappable>Terms and Conditions</a>
+    </div>
+</ion-content>

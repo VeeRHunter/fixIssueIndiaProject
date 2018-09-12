@@ -1,0 +1,59 @@
+page-profile-edit-age {
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+  ion-content {
+    background-image: url('../assets/background/SETTINGS-BG@1x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .classic-button {
+    background-color: rgba(255, 255, 255, 0.3);
+    font-size: 26px;
+    padding: 25px 0 25px 0;
+    color: #1C5379;
+    text-transform: none;
+    margin-bottom: 7px;
+    box-shadow: none;
+  }
+
+  ion-item {
+    ion-label {
+      color: color($colors, basic) !important;
+      font-family: $font-family-normal;
+      font-weight: lighter;
+    }
+    background: none !important;
+    font-size: 26px;
+    padding-left: 10px !important;
+    color: color($colors, basic) !important;
+    text-transform: none;
+    margin-bottom: 7px !important;
+    box-shadow: none;
+    .item-inner {
+      border: none !important;
+    }
+  }
+
+  ion-select {
+    color: color($colors, basic);
+    font-family: "CoTextBd", sans-serif;
+    font-size: 1.4em;
+    .button-inner {
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+    }
+  }
+
+  .submit-button {
+    font-size: 1.5em;
+    background: #357782;
+    background: linear-gradient(to right, rgba(28, 83, 121, 0.8), rgba(89, 171, 142, 0.8));
+    padding: 20px 0 20px 0;
+    margin: 40px 0 0 0;
+    color: #B8D2C6;
+    text-transform: none;
+  }
+
+}

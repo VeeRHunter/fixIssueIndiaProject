@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-row class="mt-header">
+        <ion-col col-3 text-left>
+            <button ion-button class="page-back-button button-transparent" (click)="goBackPage()" *ngIf="navCtrl.canGoBack()">
+                <ion-icon class="back-icon" name="ios-arrow-back"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-6 text-center>
+            <div class="genericTitle inHeader">
+                Settings
+            </div>
+        </ion-col>
+        <ion-col col-3>
+            <button ion-button full class="button-transparent" (click)="onLogout()"
+                    style="text-transform: none;">
+                Log out
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+
+    <div style="padding-top: 50px; padding-left: 20px; padding-right: 20px">
+        <button ion-button full class="underlined-button" item-left (click)="onSettings()">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-1 class="col-left">
+                        <ion-icon name="ios-settings-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col col-10 class="col-center">Settings</ion-col>
+                    <ion-col col-1 class="col-right">
+                        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </button>
+        <button ion-button full class="underlined-button" item-left (click)="onCreatePractitioner()"
+                *ngIf="!this.profile.is_practitioner || !this.profile.practitioner_account.approved ">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-1 class="col-left">
+                        <ion-icon name="ios-person-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col col-10 class="col-center">Are you a Practitioner?</ion-col>
+                    <ion-col col-1 class="col-right">
+                        <ion-icon name="ios-arrow-forward" item-right></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </button>
+        <button ion-button full class="underlined-button" item-left (click)="onShareApp()">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-1 class="col-left">
+                        <ion-icon name="ios-share-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col col-10 class="col-center">Share the Onus App</ion-col>
+                    <ion-col col-1 class="col-right">
+                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </button>
+        <button ion-button full class="underlined-button" item-left (click)="displayTerms()">
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-1 class="col-left">
+                        <ion-icon name="ios-help-circle-outline"></ion-icon>
+                    </ion-col>
+                    <ion-col col-10 class="col-center">Terms & Conditions</ion-col>
+                    <ion-col col-1 class="col-right">
+                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </button>
+    </div>
+
+</ion-content>

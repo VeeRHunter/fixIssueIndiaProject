@@ -1,0 +1,26 @@
+page-helpList {
+
+  ion-content {
+    background-image: url('../assets/background/email-and-explore-BG@3x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .scroll-content {
+    background-color:rgba(250, 250, 250, 0.5);
+  }
+
+  .classic-button {
+    background-color:rgba(255, 255, 255, 0.3);
+    font-size: 34px;
+    padding: 55px 0 ;
+    color: color($colors, basic);
+    opacity: 0.8;
+    filter: alpha(opacity = 80);
+    text-transform: none;
+    margin-bottom: 7px;
+    box-shadow: none;
+  }
+
+}

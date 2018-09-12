@@ -1,0 +1,49 @@
+page-post-menu {
+
+  div {
+    font-family: $font-family-normal !important;
+  }
+
+  .popover-content-area {
+    border-top: 1px solid #8A4C48;
+    border-right: 1px solid #8A4C48;
+    border-bottom: 1px solid #CDB5B5;
+    border-left: 1px solid #CDB5B5;
+
+    margin: 0 10px;
+    background: #FFFFFF;
+    .item {
+      padding: 5px 0;
+      .title {
+        color: #1c5379;
+        font-size: 16px;
+      }
+      .subtitle {
+        color: #999999;
+        font-size: 12px;
+      }
+    }
+    .step-2 {
+      color: #1c5379;
+      .title {
+        font-size: 20px;
+        padding: 10px 30px;
+      }
+      .action {
+        font-size: 20px;
+        text-align: center;
+        padding: 10px;
+      }
+      .border-right {
+        border-right: 1px solid #F9EFEF;
+      }
+    }
+    .border-bottom {
+      border-bottom: 1px solid #F9EFEF;
+    }
+    .text-center {
+      text-align: center;
+    }
+  }
+
+}

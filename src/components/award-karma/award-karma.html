@@ -1,0 +1,24 @@
+<span style="width: 30%" [ngClass]="post.hasOwnProperty('awarded_karma_id') ? 'text-gray' : 'text-blue'">
+    <ion-fab bottom left edge  style="z-index: 99;" #fab *ngIf="userProfile.id != post.post.profile.id">
+        <button ion-fab mini></button>
+        <ion-fab-list side="top" style="z-index: 99;" *ngIf="karmaBarPosition == 'top'">
+            <button ion-fab class="bg-karma-1" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(1, fab) : onUpdateKarmaPoint(1, fab)">1</button>
+            <button ion-fab class="bg-karma-2" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(2, fab) : onUpdateKarmaPoint(2, fab)">2</button>
+            <button ion-fab class="bg-karma-3" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(3, fab) : onUpdateKarmaPoint(3, fab)">3</button>
+            <button ion-fab class="bg-karma-4" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(4, fab) : onUpdateKarmaPoint(4, fab)">4</button>
+            <button ion-fab class="bg-karma-5" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(5, fab) : onUpdateKarmaPoint(5, fab)">5</button>
+        </ion-fab-list>
+        <ion-fab-list side="bottom" style="z-index: 99;" *ngIf="karmaBarPosition != 'top'">
+            <button ion-fab class="bg-karma-1" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(1, fab) : onUpdateKarmaPoint(1, fab)">1</button>
+            <button ion-fab class="bg-karma-2" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(2, fab) : onUpdateKarmaPoint(2, fab)">2</button>
+            <button ion-fab class="bg-karma-3" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(3, fab) : onUpdateKarmaPoint(3, fab)">3</button>
+            <button ion-fab class="bg-karma-4" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(4, fab) : onUpdateKarmaPoint(4, fab)">4</button>
+            <button ion-fab class="bg-karma-5" (click)="(!post.hasOwnProperty('awarded_karma_id')) ? onAddKarmaPoint(5, fab) : onUpdateKarmaPoint(5, fab)">5</button>
+        </ion-fab-list>
+    </ion-fab>
+
+    <span [ngClass]="(userProfile.id == post.post.profile.id) ? '' : (post.awarded_karma_points) ? 'karma-' + post.awarded_karma_points : ''">
+        <ion-icon name="ios-happy-outline"></ion-icon>
+        karma {{ post.post.total_karma_points }}
+    </span>
+</span>

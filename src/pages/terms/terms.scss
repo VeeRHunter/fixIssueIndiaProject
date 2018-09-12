@@ -1,0 +1,58 @@
+ion-content {
+  background-image: url('../assets/background/SETTINGS-BG@1x.png');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+
+  color: #1c5379 !important;
+}
+
+.tocTitle {
+  color: color($colors, basic);
+  text-align: center;
+  font-size: inherit;
+  padding: inherit;
+}
+
+.toolbar-background, .toolbar-background-md, .register-bar {
+  background-color: transparent !important;
+}
+
+.header::after {
+  background-image: none !important;
+}
+
+//button.activated {
+//  background: none !important;
+//  -webkit-box-shadow: none !important;
+//  box-shadow: none !important;
+//}
+
+.submit-button {
+  font-size: 1.5em;
+  background: linear-gradient(to right, rgba(28, 83, 121, 0.8), rgba(89, 171, 142, 0.8));
+  padding: 20px 0 20px 0;
+  margin: 0px 0 0 0;
+  color: #FFFFFF;
+  text-transform: none;
+}
+
+dl {
+  counter-reset: section;
+}
+
+dt {
+  font-size: 2rem;
+}
+dt::before {
+  counter-increment: section;                 /* Increment the value of section counter by 1 */
+  content: counter(section)". ";                  /* Display the value of section counter */
+}
+
+dd {
+  margin: 5px;
+}
+
+ol {
+  padding: 0 20px;
+}

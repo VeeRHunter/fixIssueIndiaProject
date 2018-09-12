@@ -1,0 +1,71 @@
+.tutorial-page {
+  .toolbar-background {
+    background: #1C5379;
+    border-color: transparent;
+  }
+
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .slide-title {
+    margin-top: 3rem;
+  }
+
+  .slide-image {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -50;
+  }
+
+  h2 {
+    color: #1C5379;
+    text-shadow: 1px 1px 1px #000000;
+    padding-top: 2rem;
+    font-size: 220%;
+  }
+
+  p {
+    padding: 0 40px;
+    line-height: 2.5rem;
+    color: #1C5379;
+    text-shadow: 1px 1px 1px #000000;
+    font-size: 2rem;
+  }
+
+  button {
+    color: #1C5379 !important;
+  }
+
+  ion-toolbar {
+    .toolbar-background {
+      background-color: transparent;
+    }
+
+    button {
+      color: #1C5379 !important;
+    }
+  }
+
+  .swiper-container-horizontal {
+    .swiper-pagination {
+      bottom: 2rem;
+    }
+
+    & > .swiper-pagination-bullets .swiper-pagination-bullet {
+      background-color: #1C5379;
+    }
+  }
+
+  .nav-wrapper {
+    position: absolute;
+    bottom: 3rem;
+    overflow: visible;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+}

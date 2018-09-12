@@ -1,0 +1,58 @@
+page-profile-edit-location {
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+  ion-content {
+    background-image: url('../assets/background/SETTINGS-BG@1x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .classic-button {
+    background-color: rgba(255, 255, 255, 0.3);
+    font-size: 26px;
+    padding: 25px 0 25px 0;
+    color: #1C5379;
+    text-transform: none;
+    margin-bottom: 7px;
+    box-shadow: none;
+  }
+
+  ion-item {
+    background: none !important;
+    font-size: 26px;
+    color: #1C5379 !important;
+    text-transform: none;
+    margin-bottom: 7px !important;
+    box-shadow: none;
+    padding: 0 !important;
+
+    label {
+      min-width: 100px;
+      max-width: 200px;
+    }
+
+    input {
+      background: none;
+      height: 3rem;
+      border: none;
+      margin-left: 30px;
+    }
+  }
+
+  .item-ios.item-block .item-inner {
+    border: none;
+  }
+
+  .submit-button {
+    font-size: 1.5em;
+    background: #357782;
+    background: linear-gradient(to right, rgba(28, 83, 121, 0.8), rgba(89, 171, 142, 0.8));
+    padding: 20px 0 20px 0;
+    margin: 40px 0 0 0;
+    color: #FFFFFF;
+    text-transform: none;
+  }
+
+}

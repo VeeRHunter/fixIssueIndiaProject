@@ -1,0 +1,52 @@
+page-posts-add {
+  .button-transparent, .button-transparent:hover {
+    //height: 40px;
+  }
+
+  .scroll-content {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  ion-content {
+    background-image: url('../assets/background/tree-of-life-creation@3x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  ion-textarea, ion-input {
+    color: color($colors, basic);
+    font-family: $font-family-normal !important;
+    //font-size: 1.3em;
+
+    ::-webkit-input-placeholder {
+      color: #B3C7D2 !important;
+      font-family: $font-family-normal !important;
+    }
+  }
+
+  .post-content {
+    .post-image-thumb {
+      img {
+        max-width: 100%;
+        max-height: 80px;
+      }
+
+      span.remove-image {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        ion-icon {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+}
+
+.emoji-btn {
+  position: absolute;
+  right: 0;
+  bottom: 60px;
+}

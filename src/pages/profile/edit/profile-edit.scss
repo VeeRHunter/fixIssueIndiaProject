@@ -1,0 +1,89 @@
+page-profile-edit {
+
+  ion-content {
+    background-image: url('../assets/background/SETTINGS-BG@1x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .classic-button {
+    background-color: rgba(255, 255, 255, 0.3);
+    font-size: 26px;
+    padding: 25px 0 25px 0;
+    color: #1C5379;
+    text-transform: none;
+    margin-bottom: 7px;
+    box-shadow: none;
+  }
+
+  button.activated {
+    background: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  .underlined-button {
+    background: none;
+    font-size: 18px;
+    padding: 15px 0 15px 0;
+    color: #1C5379;
+    text-transform: none;
+    //margin-bottom: 7px;
+    box-shadow: none;
+
+    margin-right: 50px;
+    margin-top: 15px;
+
+    .button-inner {
+      justify-content: flex-start;
+    }
+
+    .bottom-bordered {
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+      text-align: left;
+    }
+
+    .col-left {
+      text-align: right;
+      padding-right: 10px;
+    }
+    .col-center {
+      text-align: left;
+      padding-left: 0;
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+    }
+    .col-right {
+      text-align: right;
+      padding-left: 0;
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+    }
+
+  }
+
+  .gender-container {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, rgba(28, 83, 121, 0.8), rgba(89, 171, 142, 0.8));
+
+    [col-6] {
+      padding: 0;
+    }
+
+    button {
+      color: #FFF;
+      text-decoration: none;
+      text-transform: none;
+      font-size: 20px;
+
+      .button-inner {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  .overlay-gender {
+  }
+
+}

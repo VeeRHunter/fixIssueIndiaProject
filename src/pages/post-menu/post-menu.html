@@ -1,0 +1,83 @@
+<div class="popover-content-area">
+    <div *ngIf="displayMainMenu">
+        <ion-row class="item border-bottom">
+            <ion-col col-9 push-3 (click)="onDisplayReportPostAction()" tappable>
+                <div class="title">Report leaf</div>
+                <div class="subtitle">Report this leaf to admin</div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="item border-bottom">
+            <ion-col col-9 push-3 (click)="onDisplayReportUserAction()" tappable>
+                <div class="title">Report user</div>
+                <div class="subtitle">Report this user to admin</div>
+            </ion-col>
+        </ion-row>
+        <ion-row class="item" *ngIf="isPostUserFollowed()">
+            <ion-col col-9 push-3 (click)="onDisplayUnfollowUserAction()" tappable>
+                <div class="title">Unfollow</div>
+                <div class="subtitle">Stop seeing shared leaves from the user</div>
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <div *ngIf="displayReportPostAction" class="step-2">
+        <div class="title border-bottom">
+            Would you like to report this leaf as inappropriate to the Onus admin?
+        </div>
+        <ion-row>
+            <ion-col class="action border-right" col-6 (click)="onReportPost()" tappable>Yes</ion-col>
+            <ion-col class="action" col-6 (click)="close()" tappable>No</ion-col>
+        </ion-row>
+    </div>
+
+    <div *ngIf="displayReportUserAction" class="step-2">
+        <div class="title border-bottom">
+            Would you like to report this user as inappropriate to the Onus admin?
+        </div>
+        <ion-row>
+            <ion-col class="action border-right" col-6 (click)="onReportUser()" tappable>Yes</ion-col>
+            <ion-col class="action" col-6 (click)="close()" tappable>No</ion-col>
+        </ion-row>
+    </div>
+
+    <div *ngIf="displayUnfollowUserAction" class="step-2">
+        <div class="title border-bottom">
+            Would you like to unfollow "{{post.profile.first_name}} {{post.profile.last_name}}"?
+        </div>
+        <ion-row>
+            <ion-col class="action border-right" col-6 (click)="onUnfollowUser()" tappable>Yes</ion-col>
+            <ion-col class="action" col-6 (click)="close()" tappable>No</ion-col>
+        </ion-row>
+    </div>
+
+    <div *ngIf="displayReportPostResult" class="step-2">
+        <div class="title border-bottom text-center">
+            Thank you!<br>
+            A notification has been sent to the Onus admin for review
+        </div>
+        <ion-row>
+            <ion-col class="action" col-12 (click)="onReportPostDone()" tappable>OK</ion-col>
+        </ion-row>
+    </div>
+
+    <div *ngIf="displayReportUserResult" class="step-2">
+        <div class="title border-bottom text-center">
+            Thank you!<br>
+            A notification has been sent to the Onus admin for review
+        </div>
+        <ion-row>
+            <ion-col class="action" col-12 (click)="onReportUserDone()" tappable>OK</ion-col>
+        </ion-row>
+    </div>
+
+    <div *ngIf="displayUnfollowUserResult" class="step-2">
+        <div class="title border-bottom text-center">
+            Thank you!<br>
+            You have unfollowed {{post.profile.first_name}} {{post.profile.last_name}}
+        </div>
+        <ion-row>
+            <ion-col class="action" col-12 (click)="onUnfollowUserDone()" tappable>OK</ion-col>
+        </ion-row>
+    </div>
+
+</div>

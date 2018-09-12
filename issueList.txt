@@ -1,0 +1,22 @@
+Issues of the ionic project
+
+1.Transitions between all login screens is not smooth or consistent still when clicking on the green bar!!. 
+Not too bad from the keyboard- If they don’t get what I mean, An example of smooth transition for login screens is sharecare.
+Also, why is there only a cursor when where a user enter their email and not password).
+
+2.When choosing to show an item on your profile page its does let me uncheck. iPhone X working.
+iPhonwe 6 and 6s not working.
+
+3.App froze during testing again refer to images. 
+Remained frozen after force quitting. Had to reinstall again.
+
+4.ANDROID ISSUES - Freezing after entering password (Oppo phone) See images.
+
+5.Password screen doesn’t work at all when pressing on green bar only with keyboard..then when you click the keyboard it wipes out the password.
+
+6.Transition is not good it jerks up and down when using green bar.
+
+7.From a profile page, clicking back to settings, the screen moves right instead of left like other screens.
+
+8.There’s still a cursor on email login but nothing on password login, has to be consistent, either or not!!.
+Cant those two screens have exactly the same design as new login? Which has an X and > to move to the next screen.

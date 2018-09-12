@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-row class='mt-header'>
+        <ion-col col-2 text-left>
+            <button ion-button class="page-back-button button-transparent" (click)="goBackPage()" *ngIf="navCtrl.canGoBack()">
+                <ion-icon class="back-icon" name="ios-arrow-back"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-8 text-center>
+            <div class="genericTitle inHeader">
+                notifications
+            </div>
+        </ion-col>
+        <ion-col col-2 text-right style="padding-top: 10px; padding-right: 10px"></ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+
+    <div style="padding-top: 0; height: 100%;">
+
+        <no-data *ngIf="!dataLoading && !notifications?.length"></no-data>
+
+        <ion-grid class="posts-grid">
+
+            <ion-row class="post-row" *ngFor="let notification of notifications"
+                     [ngStyle]="notification.is_read ? {'background-color': 'rgba(250, 250, 250, 0.7)'} : ''">
+                <ion-col col-3 class="user-profile">
+                    <img [src]="getUserProfileImage(notification)" class="small_profile_pic"
+                        (click)="onUserPictureFollow(notification)" tappable>
+                </ion-col>
+                <ion-col col-9 class="post-container">
+                    <div class="post-content" (click)="onNotificationFollow(notification)" tappable>
+                        <div class="notification-body">
+                            <div *ngIf="notification.type === 'post.create'">
+                                <div>
+                                    <span class="user-fn">{{notification.post.profile.first_name}} {{notification.post.profile.last_name}}</span>
+                                    created a new leaf
+                                </div>
+                                <div class="added-at">
+                                    <ion-icon name="md-add"></ion-icon>
+                                    {{displayTimeDifference(notification.created_at)}}
+                                </div>
+                            </div>
+                            <div *ngIf="notification.type === 'post.reply'">
+                                <div>
+                                    <span class="user-fn">{{notification.reply_profile.first_name}} {{notification.reply_profile.last_name}}</span>
+                                    commented on your leaf
+                                </div>
+                                <div class="added-at">
+                                    <ion-icon name="md-chatbubbles"></ion-icon>
+                                    {{displayTimeDifference(notification.created_at)}}
+                                </div>
+                            </div>
+                            <div *ngIf="notification.type === 'post.karma.award'">
+                                <div>
+                                    You have received {{notification.points_awarded}} karma points from
+                                    <span class="user-fn">{{notification.awarding_profile.first_name}} {{notification.awarding_profile.last_name}}</span>
+                                </div>
+                                <div class="added-at">
+                                    <span class="karma-{{notification.points_awarded}}"><ion-icon name="ios-happy-outline"></ion-icon></span>
+                                    {{displayTimeDifference(notification.created_at)}}
+                                </div>
+                            </div>
+                            <div *ngIf="notification.type === 'post.impact.award'">
+                                <div>
+                                    You have received an impact point from
+                                    <span class="user-fn">{{notification.awarding_profile.first_name}} {{notification.awarding_profile.last_name}}</span>
+                                </div>
+                                <div class="added-at">
+                                    <ion-icon name="ios-star"></ion-icon>
+                                    {{displayTimeDifference(notification.created_at)}}
+                                </div>
+                            </div>
+                            <div *ngIf="notification.type === 'profile.follow'">
+                                <div>
+                                    You have received a new connection request from
+                                    <span class="user-fn">{{notification.follower_profile.first_name}} {{notification.follower_profile.last_name}}</span>
+                                </div>
+                                <div class="added-at">
+                                    <ion-icon name="md-add"></ion-icon>
+                                    {{displayTimeDifference(notification.created_at)}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-a-photo">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </div>
+
+                    </div>
+                </ion-col>
+            </ion-row>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+
+        </ion-grid>
+    </div>
+</ion-content>

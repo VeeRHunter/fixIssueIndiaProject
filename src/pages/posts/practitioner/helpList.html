@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-row class="mt-header">
+        <ion-col col-2 text-left>
+            <button ion-button class="page-back-button button-transparent" *ngIf="navCtrl.canGoBack()" (click)="goBackPage()">
+                <ion-icon class="back-icon" name="ios-arrow-back"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-8 text-center>
+            <div class="genericTitle inHeader">
+                {{profile.practitioner_account.field_of_practice.name | lowercase}} list
+            </div>
+        </ion-col>
+        <ion-col col-2 text-right></ion-col>
+    </ion-row>
+</ion-header>
+
+<ion-content>
+
+    <div style="padding-top: 0; height: 100%;">
+
+        <no-data *ngIf="!dataLoading && !notifications?.length"></no-data>
+
+        <ion-grid class="posts-grid">
+            <div *ngFor="let post of posts">
+                <post [post]="post" [userProfile]="profile"></post>
+            </div>
+        </ion-grid>
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+    </div>
+
+</ion-content>

@@ -1,0 +1,67 @@
+award-karma {
+  //
+  //.karma-1 {
+  //  color: #6FB5C0 !important;
+  //}
+  //.karma-2 {
+  //  color: #2E9AD9 !important;
+  //}
+  //.karma-3 {
+  //  color: #E81580 !important;
+  //}
+  //.karma-4 {
+  //  color: #F28C42 !important;
+  //}
+  //.karma-5 {
+  //  color: #FAD451 !important;
+  //}
+  .bg-karma-1 {
+    background-color: #6FB5C0 !important;
+  }
+  .bg-karma-2 {
+    background-color: #2E9AD9 !important;
+  }
+  .bg-karma-3 {
+    background-color: #E81580 !important;
+  }
+  .bg-karma-4 {
+    background-color: #F28C42 !important;
+  }
+  .bg-karma-5 {
+    background-color: #FAD451 !important;
+  }
+
+  .fab {
+    box-shadow: 0 0 20px 8px rgba(255, 255, 255, 0.6) !important;
+    color: #FFFFFF;
+  }
+  .button-inner {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-weight: 600;
+    font-family: "CoTextLt", sans-serif !important;
+  }
+  ion-fab {
+    position: absolute;
+  }
+  //ion-fab[top][edge] {
+  //  bottom: -20px;
+  //  left: -10px;
+  //}
+  ion-fab[bottom][edge] {
+    bottom: -10px;
+    left: -10px;
+  }
+  .fab[mini] {
+    border-radius: unset;
+    width: 80px;
+    height: 30px;
+    opacity: 0;
+  }
+  .fab-in-list {
+    margin: 3px 0;
+  }
+  ion-fab-list {
+    margin: 50px 0;
+    left: 15px;
+  }
+}

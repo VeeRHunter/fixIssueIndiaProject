@@ -1,0 +1,145 @@
+<ion-content class="profileContainer">
+    <ng-container *ngIf="!dataLoading">
+
+        <div text-center class="user-profile-bg" [style.background-image]="userImageBg"></div>
+
+        <div class="user-profile-image">
+            <img [src]="userImage">
+            <div class="user-name">
+                <span *ngIf="!userProfile.first_name && !userProfile.last_name"><i>private profile</i></span>
+                {{userProfile.first_name}} {{userProfile.last_name}}
+            </div>
+        </div>
+
+        <ion-grid class="profile-info-grid">
+
+            <ion-row>
+                <ion-col class="info-cell karma">
+                    <div class="info-cell-title">karma</div>
+                    <div class="info-cell-value">
+                        <span *ngIf="userProfile.total_karma_points">{{userProfile.total_karma_points}}</span>
+                        <span *ngIf="!userProfile.total_karma_points">0</span>
+                    </div>
+                </ion-col>
+                <ion-col class="info-cell leaves">
+                    <div class="info-cell-title">leaves</div>
+                    <div class="info-cell-value">
+                        <span *ngIf="userProfile.total_posts">{{userProfile.total_posts}}</span>
+                        <span *ngIf="!userProfile.total_posts">0</span>
+                    </div>
+                </ion-col>
+                <ion-col class="info-cell impact">
+                    <div class="info-cell-title">impact</div>
+                    <div class="info-cell-value">
+                        <span *ngIf="userProfile.total_impact_points">{{userProfile.total_impact_points}}</span>
+                        <span *ngIf="!userProfile.total_impact_points">0</span>
+                    </div>
+                </ion-col>
+                <ion-col class="info-cell mood {{currentMoodClass}}" *ngIf="mood">
+                    <div class="info-cell-title">mood</div>
+                    <div class="info-cell-value" style="font-size: 1em; padding-top: 1px">{{mood.mood}}
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="!isFollowingUser() && !didFollow">
+                <ion-col col-12 class="what-to-do">
+                    <button ion-button full large (click)="onConnectToUser()">
+                        <ion-col col-2></ion-col>
+                        <ion-col col-8>connect
+                            <span *ngIf="userProfile.first_name">with {{userProfile.first_name}}</span>
+                        </ion-col>
+                        <ion-col col-3 text-left>
+                            <ion-icon name="md-add" style="color: #47809E;"></ion-icon>
+                        </ion-col>
+                    </button>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="isFollowingUser() || didFollow">
+                <ion-col col-12 class="what-to-do">
+
+                    <button ion-button full large>
+                        <ion-col col-2></ion-col>
+                        <ion-col col-8>you're connected</ion-col>
+                        <ion-col col-3 text-left>
+                            <ion-icon name="md-checkmark" style="color: #26D6A4;"></ion-icon>
+                        </ion-col>
+                    </button>
+
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="user-details" text-center col-12>
+                    <p>{{userProfile.first_name}} {{userProfile.last_name}}</p>
+                    <ng-container *ngIf="!isApprovedPractitioner(userProfile)">
+                        <p>
+                            <span>Health User</span>
+                        </p>
+                        <p *ngIf="userProfile.ailment_category?.name">{{userProfile.ailment_category.name}}</p>
+                    </ng-container>
+                    <ng-container *ngIf="isApprovedPractitioner(userProfile)">
+                        <p>
+                            <span>Practitioner</span>
+                        </p>
+                        <p *ngIf="userProfile.practitioner_account?.field_of_practice.name">
+                            {{userProfile.practitioner_account.field_of_practice.name}}</p>
+                    </ng-container>
+
+                    <p>
+          <span *ngIf="userProfile.city && userProfile.city">{{userProfile.city}}<span
+                  *ngIf="userProfile.country && userProfile.country">, </span></span>
+                        <span *ngIf="userProfile.country">{{userProfile.country}}</span>
+                    </p>
+                    <p>
+                        <span *ngIf="GENDER_MALE == userProfile.gender">Male<span
+                                *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="GENDER_FEMALE == userProfile.gender">Female<span
+                                *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="GENDER_INDETERMINATE == userProfile.gender">Indeterminate<span
+                                *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="GENDER_INTERSEX == userProfile.gender">Intersex<span
+                                *ngIf="userProfile.date_of_birth">, </span></span>
+                        <span *ngIf="GENDER_OTHER == userProfile.gender">Other<span
+                                *ngIf="userProfile.date_of_birth">, </span></span>
+
+                        <span *ngIf="userProfile.date_of_birth">
+                        {{getAge(userProfile.date_of_birth)}} years
+                    </span>
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12 class="about-user">
+                    <ng-container *ngIf="!isApprovedPractitioner(userProfile)">
+                        <p class="timeline-title" *ngIf="userProfile.personal_bio">my story</p>
+                    </ng-container>
+                    <ng-container *ngIf="isApprovedPractitioner(userProfile)">
+                        <p class="timeline-title" *ngIf="userProfile.personal_bio">about me</p>
+                    </ng-container>
+                    <p class="personal" *ngIf="userProfile.personal_bio">"{{userProfile.personal_bio}}"</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid class="posts-grid" *ngIf="isFollowingUser()">
+
+            <div *ngIf="loadingPosts" style="padding: 20px; text-align: center">
+                <img src="assets/customSpinner.svg">
+            </div>
+
+            <div *ngIf="!loadingPosts && !posts?.length" style="padding: 20px 0">
+                <no-data text="the user has no posts"></no-data>
+            </div>
+
+            <div *ngFor="let post of posts">
+                <post [post]="post" [userProfile]="authUserProfile" (isReloadNeeded)="handleReload($event)"></post>
+            </div>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+
+        </ion-grid>
+
+    </ng-container>
+
+</ion-content>

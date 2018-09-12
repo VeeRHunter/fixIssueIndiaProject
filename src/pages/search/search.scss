@@ -1,0 +1,133 @@
+page-search {
+
+  ion-content {
+    background-image: url('../assets/background/SETTINGS-BG@1x.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+  }
+
+  .toolbar-background, .toolbar-background-md, .register-bar {
+    background-color: transparent !important;
+  }
+
+  .header::after {
+    background-image: none !important;
+  }
+
+  button.activated {
+    background: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  .top-button {
+    background: none;
+    font-size: 18px;
+    padding: 15px 0 15px 0;
+    color: #1C5379;
+    text-transform: none;
+    box-shadow: none;
+    text-align: center;
+    margin-right: 50px;
+    .button-inner {
+      //justify-content: flex-start;
+    }
+  }
+
+  .active-button {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  ion-item {
+    background: none !important;
+    font-size: 26px;
+    color: #1C5379 !important;
+    text-transform: none;
+    margin-bottom: 7px !important;
+    box-shadow: none;
+    padding: 0 !important;
+    //border-bottom: 1px solid rgba(12, 33, 48, 0.6) !important;
+    .ion-input {
+      //border-bottom: 1px solid rgba(12, 33, 48, 0.6) !important;
+    }
+    .item-inner {
+      border-bottom: 1px solid rgba(12, 33, 48, 0.6) !important;
+    }
+    .input-cover {
+      //border-bottom: 1px solid rgba(12, 33, 48, 0.6);
+    }
+  }
+
+  .loading-results {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #1C5379 !important;
+    ion-spinner {
+      height: 18px;
+    }
+    .search-in-progress {
+      padding-left: 20px;
+    }
+  }
+
+  .profile-image {
+    border-radius: 50%;
+    width: 35px;
+  }
+
+  .search-result {
+    margin-top: 30px;
+    color: #1C5379;
+    .col-content {
+      display: flex!important;
+      align-content: center!important;
+      align-items: center!important;
+      height: 100%;
+      opacity: 0.6;
+    }
+    .username {
+      font-weight: bold;
+    }
+    .karma {
+      font-size: 10px;
+      font-weight: bold;
+    }
+    .since {
+      font-size: 10px;
+      font-weight: bold;
+      color: #9B9B9B;
+    }
+    .results-header {
+      padding: 10px 0;
+    }
+    .no-results {
+      padding-top: 100px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+      color: #1C5379;
+    }
+  }
+
+  .text-input {
+    margin: 0 !important;
+  }
+
+  .text-input::-moz-placeholder {
+    color: #1C5379;
+    opacity: 0.4;
+  }
+
+  .text-input:-ms-input-placeholder {
+    color: #1C5379;
+    opacity: 0.4;
+  }
+
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: #1C5379;
+    opacity: 0.4;
+  }
+
+}
